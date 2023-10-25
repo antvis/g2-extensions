@@ -1,12 +1,14 @@
+import { register } from "@antv/g2";
 import { Auto } from "../../src";
+
+register("mark.auto", Auto);
 
 export function AlphabetAutoBasic() {
   return {
-    type: Auto,
+    type: "auto",
     data: { type: "fetch", value: "data/alphabet.csv" },
-    encode: {
-      x: "letter",
-      y: "frequency",
+    animate: {
+      enter: { type: "waveIn" },
     },
   };
 }
