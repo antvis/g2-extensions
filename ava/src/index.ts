@@ -1,2 +1,9 @@
-export { autolib } from "./autolib";
-export { Auto, type AutoOptions } from "./auto";
+import { Auto, type AutoOptions } from "./auto";
+
+export function autolib() {
+  return {
+    "mark.auto": Auto,
+  };
+}
+
+export { Auto, AutoOptions };
