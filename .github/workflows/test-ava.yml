@@ -16,3 +16,4 @@ jobs:
           node-version: 16
       - run: cd ava && npm install
       - run: cd ava && npm run test
+      - run: cd ava && npm run build
