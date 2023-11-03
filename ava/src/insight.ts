@@ -12,25 +12,28 @@ export type InsightOptions = Mark & InsightExtractorProps & {
 
 export const Insight = (options: InsightOptions) => {
   if(!options) return {}
-  const { data, dimensions, measures, insightType, options: insightExtractorOptions, ...rest } = options;
-  // TODO 增加 try catch 流程，避免报错影响图表渲染
-  const patterns = insightPatternsExtractor({
-    data,
-    dimensions,
-    measures,
-    options: insightExtractorOptions,
-    insightType,
-  });
-  // TODO 改成直接使用 insight 模块的绘制 mark 函数
-  const specs = map(generateInsightVisualizationSpec({
-    dimensions: map(dimensions, dimension => ({
-      fieldName: dimension,
-    })),
-    measures,
-    subspace: [],
-    patterns,
-    data
-  }), result => result.chartSpec)
-  const children = specs[0].children
-  return children;
+  const { data, dimensions, measures, insightType, options: insightExtractorOptions } = options;
+  // try catch 下，防止 ava insight 内部报错导致图表绘制不出来
+  try {
+    const patterns = insightPatternsExtractor({
+      data,
+      dimensions,
+      measures,
+      options: insightExtractorOptions,
+      insightType,
+    });
+    // TODO 改成直接使用 insight 模块的绘制 mark 函数
+    const specs = map(generateInsightVisualizationSpec({
+      dimensions: map(dimensions, dimension => ({
+        fieldName: dimension,
+      })),
+      measures,
+      subspace: [],
+      patterns,
+      data
+    }), result => result.chartSpec)
+    return specs?.[0]?.children;
+  } catch (err) {
+    console.error(err);
+  }
 };
