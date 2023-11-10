@@ -1,2 +1,3 @@
 export { AlphabetAutoBasic } from "./alphabet-auto-basic";
-export { TimeSeriesOutlierBasic } from './time-series-outlier-basic';
+export { InsightBasic } from './insight-basic';
+export { TimeSeriesOutlierBasic } from './time-series-outlier-basic'
