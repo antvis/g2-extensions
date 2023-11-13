@@ -1,16 +1,7 @@
 import { group } from "d3-array";
-import {
-  LineMark,
-  MaybeSeries,
-  MarkComponent as MC,
-  SingleMark,
-  Vector3,
-  baseGeometryChannels,
-  basePostInference,
-  basePreInference,
-  tooltip3d,
-} from "@antv/g2";
+import { LineMark, MaybeSeries, MarkComponent as MC, SingleMark, Vector3 } from "@antv/g2";
 import { Line as Line3DShape } from "../shape/line3D/line";
+import { baseGeometryChannels, basePostInference, basePreInference, tooltip3d } from "./utils";
 
 const shape = {
   line: Line3DShape,

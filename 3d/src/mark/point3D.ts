@@ -1,19 +1,8 @@
 import { Coordinate3D } from "@antv/coord";
-import {
-  PointMark,
-  MarkComponent as MC,
-  Vector3,
-  MaybeZeroX,
-  MaybeZeroY,
-  MaybeZeroZ,
-  MaybeSize,
-  baseGeometryChannels,
-  basePostInference,
-  basePreInference,
-  tooltip3d,
-} from "@antv/g2";
+import { PointMark, MarkComponent as MC, Vector3, MaybeZeroX, MaybeZeroY, MaybeZeroZ, MaybeSize } from "@antv/g2";
 import { Cube } from "../shape/point3D/cube";
 import { Sphere } from "../shape/point3D/sphere";
+import { baseGeometryChannels, basePostInference, basePreInference, tooltip3d } from "./utils";
 
 export type PointOptions = Omit<PointMark, "type">;
 

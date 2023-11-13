@@ -1,5 +1,6 @@
 import { MeshLambertMaterial, CylinderGeometry, Mesh } from "@antv/g-plugin-3d";
-import { ShapeComponent as SC, Vector3, select, applyStyle, getOrigin, toOpacityKey } from "@antv/g2";
+import { ShapeComponent as SC, Vector3, select } from "@antv/g2";
+import { applyStyle, getOrigin, toOpacityKey } from "../utils";
 
 export type CylinderOptions = Record<string, any>;
 

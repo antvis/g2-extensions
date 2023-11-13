@@ -1,5 +1,6 @@
 import { MeshLambertMaterial, CubeGeometry, Mesh } from "@antv/g-plugin-3d";
-import { ShapeComponent as SC, select, applyStyle, getOrigin, toOpacityKey } from "@antv/g2";
+import { ShapeComponent as SC, select } from "@antv/g2";
+import { applyStyle, getOrigin, toOpacityKey } from "../utils";
 
 const GEOMETRY_SIZE = 5;
 
