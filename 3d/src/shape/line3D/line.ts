@@ -1,7 +1,5 @@
 import { Polyline } from "@antv/g";
-import { applyStyle } from "../utils";
-import { ShapeComponent as SC } from "../../runtime";
-import { select } from "../../utils/selection";
+import { ShapeComponent as SC, select, applyStyle } from "@antv/g2";
 
 export type LineOptions = Record<string, any>;
 

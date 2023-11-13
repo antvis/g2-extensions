@@ -1,7 +1,5 @@
-import { MeshLambertMaterial, CylinderGeometry, Mesh } from '@antv/g-plugin-3d';
-import { applyStyle, getOrigin, toOpacityKey } from '../utils';
-import { ShapeComponent as SC, Vector3 } from '../../runtime';
-import { select } from '../../utils/selection';
+import { MeshLambertMaterial, CylinderGeometry, Mesh } from "@antv/g-plugin-3d";
+import { ShapeComponent as SC, Vector3, select, applyStyle, getOrigin, toOpacityKey } from "@antv/g2";
 
 export type CylinderOptions = Record<string, any>;
 
@@ -11,7 +9,7 @@ export const Cylinder: SC<CylinderOptions> = (options, context) => {
 
   if (!context.cylinderGeometry) {
     const renderer = context.canvas.getConfig().renderer;
-    const plugin = renderer.getPlugin('device-renderer');
+    const plugin = renderer.getPlugin("device-renderer");
     const device = plugin.getDevice();
     // create a cylinder geometry
     context.cylinderGeometry = new CylinderGeometry(device, {
@@ -46,8 +44,8 @@ export const Cylinder: SC<CylinderOptions> = (options, context) => {
 
     const selection = select(cylinder)
       .call(applyStyle, defaults)
-      .style('fill', color)
-      .style('transform', transform)
+      .style("fill", color)
+      .style("transform", transform)
       .style(toOpacityKey(options), opacity)
       .call(applyStyle, style)
       .node();
@@ -56,5 +54,5 @@ export const Cylinder: SC<CylinderOptions> = (options, context) => {
 };
 
 Cylinder.props = {
-  defaultMarker: 'cylinder',
+  defaultMarker: "cylinder",
 };

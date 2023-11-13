@@ -1,7 +1,5 @@
-import { MeshLambertMaterial, ConeGeometry, Mesh } from '@antv/g-plugin-3d';
-import { applyStyle, getOrigin, toOpacityKey } from '../utils';
-import { ShapeComponent as SC, Vector3 } from '../../runtime';
-import { select } from '../../utils/selection';
+import { MeshLambertMaterial, ConeGeometry, Mesh } from "@antv/g-plugin-3d";
+import { ShapeComponent as SC, Vector3, select, applyStyle, getOrigin, toOpacityKey } from "@antv/g2";
 
 export type ConeOptions = Record<string, any>;
 
@@ -11,7 +9,7 @@ export const Cone: SC<ConeOptions> = (options, context) => {
 
   if (!context.coneGeometry) {
     const renderer = context.canvas.getConfig().renderer;
-    const plugin = renderer.getPlugin('device-renderer');
+    const plugin = renderer.getPlugin("device-renderer");
     const device = plugin.getDevice();
     // create a cone geometry
     context.coneGeometry = new ConeGeometry(device, {
@@ -47,8 +45,8 @@ export const Cone: SC<ConeOptions> = (options, context) => {
 
     const selection = select(cone)
       .call(applyStyle, defaults)
-      .style('fill', color)
-      .style('transform', transform)
+      .style("fill", color)
+      .style("transform", transform)
       .style(toOpacityKey(options), opacity)
       .call(applyStyle, style)
       .node();
@@ -57,5 +55,5 @@ export const Cone: SC<ConeOptions> = (options, context) => {
 };
 
 Cone.props = {
-  defaultMarker: 'cone',
+  defaultMarker: "cone",
 };

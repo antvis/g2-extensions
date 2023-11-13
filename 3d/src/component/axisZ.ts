@@ -1,5 +1,4 @@
-import { GuideComponentComponent as GCC } from "@antv/g2";
-import { LinearAxis, AxisOptions, rotateAxis } from "./axis";
+import { GuideComponentComponent as GCC, LinearAxis, AxisOptions, rotateAxis } from "@antv/g2";
 
 export type AxisXOptions = AxisOptions;
 

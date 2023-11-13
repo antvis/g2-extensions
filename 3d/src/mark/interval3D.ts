@@ -1,12 +1,20 @@
 import { Coordinate3D } from "@antv/coord";
 import { Band } from "@antv/scale";
-import { PointMark } from "@antv/g2";
-import { MarkComponent as MC } from "../runtime";
-import { MaybeZeroX, MaybeZeroZ, MaybeSize, MaybeZeroY1 } from "../transform";
+import {
+  PointMark,
+  MarkComponent as MC,
+  MaybeZeroX,
+  MaybeZeroZ,
+  MaybeSize,
+  MaybeZeroY1,
+  baseGeometryChannels,
+  basePostInference,
+  basePreInference,
+  tooltip3d,
+} from "@antv/g2";
 import { Cone as IntervalCone } from "../shape/interval3D/cone";
 import { Cylinder as IntervalCylinder } from "../shape/interval3D/cylinder";
 import { Cube as IntervalCube } from "../shape/interval3D/cube";
-import { baseGeometryChannels, basePostInference, basePreInference, tooltip3d } from "./utils";
 
 export type PointOptions = Omit<PointMark, "type">;
 

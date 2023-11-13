@@ -1,5 +1,10 @@
 import { expect, test } from "vitest";
-import { Cartesian3D, AxisZ, Point3D, Line3D, Interval3D, threedlib } from "../../src";
+import { threedlib } from "../../src";
+import { Cartesian3D } from "../../src/coordinate/coordinate3D";
+import { AxisZ } from "../../src/component/axisZ";
+import { Point3D } from "../../src/mark/point3D";
+import { Line3D } from "../../src/mark/line3D";
+import { Interval3D } from "../../src/mark/interval3D";
 
 test("threedlib should export expected marks", () => {
   expect(threedlib()).toEqual({

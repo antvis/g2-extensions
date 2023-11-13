@@ -1,9 +1,16 @@
 import { group } from "d3-array";
-import { LineMark } from "@antv/g2";
-import { Mark, MarkComponent as MC, SingleMark, Vector3 } from "../runtime";
+import {
+  LineMark,
+  MaybeSeries,
+  MarkComponent as MC,
+  SingleMark,
+  Vector3,
+  baseGeometryChannels,
+  basePostInference,
+  basePreInference,
+  tooltip3d,
+} from "@antv/g2";
 import { Line as Line3DShape } from "../shape/line3D/line";
-import { MaybeSeries } from "../transform";
-import { baseGeometryChannels, basePostInference, basePreInference, tooltip3d } from "./utils";
 
 const shape = {
   line: Line3DShape,
@@ -11,7 +18,7 @@ const shape = {
 
 export type LineOptions = Omit<LineMark, "type">;
 
-const line: Mark = (index, scale, value, coordinate) => {
+const line: any = (index: number[], scale, value, coordinate) => {
   const { series: S, x: X, y: Y, z: Z } = value;
   const { x, y, z } = scale;
 

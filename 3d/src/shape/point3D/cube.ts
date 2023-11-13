@@ -1,7 +1,5 @@
-import { MeshLambertMaterial, CubeGeometry, Mesh } from '@antv/g-plugin-3d';
-import { applyStyle, getOrigin, toOpacityKey } from '../utils';
-import { ShapeComponent as SC } from '../../runtime';
-import { select } from '../../utils/selection';
+import { MeshLambertMaterial, CubeGeometry, Mesh } from "@antv/g-plugin-3d";
+import { ShapeComponent as SC, select, applyStyle, getOrigin, toOpacityKey } from "@antv/g2";
 
 const GEOMETRY_SIZE = 5;
 
@@ -17,7 +15,7 @@ export const Cube: SC<CubeOptions> = (options, context) => {
   // @ts-ignore
   if (!context.cubeGeometry) {
     const renderer = context.canvas.getConfig().renderer;
-    const plugin = renderer.getPlugin('device-renderer');
+    const plugin = renderer.getPlugin("device-renderer");
     const device = plugin.getDevice();
     // create a sphere geometry
     // @ts-ignore
@@ -55,8 +53,8 @@ export const Cube: SC<CubeOptions> = (options, context) => {
 
     return select(cube)
       .call(applyStyle, defaults)
-      .style('fill', color)
-      .style('transform', transform)
+      .style("fill", color)
+      .style("transform", transform)
       .style(toOpacityKey(options), opacity)
       .call(applyStyle, style)
       .node();
@@ -64,5 +62,5 @@ export const Cube: SC<CubeOptions> = (options, context) => {
 };
 
 Cube.props = {
-  defaultMarker: 'cube',
+  defaultMarker: "cube",
 };
