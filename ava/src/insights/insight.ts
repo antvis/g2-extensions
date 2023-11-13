@@ -1,9 +1,9 @@
-import { generateInsightVisualizationSpec, insightPatternsExtractor } from "@antv/ava";
-import { map } from "@antv/util";
-import type { Dimension, InsightExtractorProps, Measure } from "@antv/ava";
+import { getSpecificInsight } from "@antv/ava";
+import { flattenDeep } from "@antv/util";
+import type { AugmentedMarks, Dimension, InsightExtractorProps, Measure } from "@antv/ava";
 
 /** 目前可支持的能产生 insight annotations 的 marks */
-export const INSIGHT_TYPES: InsightExtractorProps['insightType'][] = ["category_outlier", "trend", "change_point", "time_series_outlier", "low_variance", "correlation"]
+export const INSIGHT_TYPES: InsightExtractorProps['insightType'][] = ["category_outlier", "trend", "change_point", "time_series_outlier", "low_variance"]
 
 export type InsightMarkOptions = InsightExtractorProps & {
   insightType: typeof INSIGHT_TYPES[number];
@@ -25,23 +25,16 @@ export const Insight = (options: InsightMarkOptions) => {
   const {dimensions = defaultDimensions, measures = defaultMeasures} = options
   // try catch 下，防止 ava insight 内部报错导致图表绘制不出来
   try {
-    const patterns = insightPatternsExtractor({
+    const specificInsightResult = getSpecificInsight({
       data,
       dimensions,
       measures,
       options: insightExtractorOptions,
       insightType,
-    })
-    // TODO 可改成直接使用 insight 模块的绘制 mark 函数
-    const specs = map(generateInsightVisualizationSpec({
-      dimensions,
-      measures,
-      subspace: [],
-      patterns,
-      data
-    }), result => result.chartSpec)
-    /** @ts-ignore 可以获得 children */
-    return specs?.[0]?.children;
+    });
+    const augmentedMarks =  (specificInsightResult.visualizationSpecs[0]?.annotationSpec ?? []) as AugmentedMarks; 
+    const marks = flattenDeep(augmentedMarks.map((augmentedMark) => Object.values(augmentedMark)));
+    return marks;
   } catch (err) {
     console.error(err);
     return []
