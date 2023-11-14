@@ -1,8 +1,11 @@
+import { runtime } from "@antv/g";
 import { Interval3D } from "./mark/interval3D";
 import { Point3D } from "./mark/point3D";
 import { Line3D } from "./mark/line3D";
 import { Cartesian3D } from "./coordinate/coordinate3D";
 import { AxisZ } from "./component/axisZ";
+
+runtime.enableCSSParsing = false;
 
 export function threedlib() {
   return {

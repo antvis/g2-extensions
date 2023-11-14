@@ -1,6 +1,6 @@
 {
   "name": "@antv/g2-extension-3d",
-  "version": "0.1.1-beta.1",
+  "version": "0.1.1",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "unpkg": "dist/index.umd.min.js",
@@ -10,6 +10,9 @@
     "esm",
     "dist",
     "README.md"
+  ],
+  "sideEffects": [
+    "./esm/index.js"
   ],
   "scripts": {
     "dev": "vite",
@@ -30,11 +33,13 @@
     "@antv/util": "^3.3.5"
   },
   "peerDependencies": {
-    "@antv/g2": "^5.1.8-beta.1"
+    "@antv/g": "^5.18.19",
+    "@antv/g2": "^5.1.8"
   },
   "devDependencies": {
     "@types/d3-array": "3.0.5",
-    "@antv/g2": "^5.1.8-beta.1",
+    "@antv/g": "^5.18.19",
+    "@antv/g2": "^5.1.8",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-terser": "^0.4.3",
