@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "sourceRoot": "src",
     "baseUrl": "src",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "outDir": "./"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

@@ -36,5 +36,5 @@
     "vite": "^4.3.9",
     "vitest": "^0.34.2"
   },
-  "repository": "https://github.com/antvis/g2-extentions.git"
+  "repository": "https://github.com/antvis/g2-extensions.git"
 }
