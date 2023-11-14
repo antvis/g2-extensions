@@ -16,9 +16,6 @@ export function TimeSeriesOutlierBasic() {
             "y": "life_expect"
         },
         type: "line",
-        style: {
-            "lineWidth": 2
-        }
       },
       // 异常点 mark
       {
