@@ -16,9 +16,6 @@ export function CategoryOutlierBasic() {
               "y": "value"
           },
           type: "interval",
-          style: {
-              "lineWidth": 2
-          }
         },
         // 异常点 mark
         {

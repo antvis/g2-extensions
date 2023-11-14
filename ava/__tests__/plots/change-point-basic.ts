@@ -16,9 +16,6 @@ export function ChangePointBasic() {
               "y": "value"
           },
           type: "line",
-          style: {
-              "lineWidth": 2
-          }
         },
         // 突变点 mark
         {

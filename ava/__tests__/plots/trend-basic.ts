@@ -16,9 +16,6 @@ export function TrendBasic() {
               "y": "value"
           },
           type: "line",
-          style: {
-              "lineWidth": 2
-          }
         },
         // 趋势线 mark
         {

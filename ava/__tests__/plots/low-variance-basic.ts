@@ -16,9 +16,6 @@ export function LowVarianceBasic() {
               "y": "life_expect"
           },
           type: "interval",
-          style: {
-              "lineWidth": 2
-          }
         },
         // 低方差 mark
         {
