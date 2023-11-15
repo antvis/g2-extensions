@@ -56,6 +56,7 @@ export const Sphere: SC<SphereOptions> = (options, context) => {
       .call(applyStyle, defaults)
       .style("fill", color)
       .style("transform", transform)
+      .style("visibility", "visible")
       .style(toOpacityKey(options), opacity)
       .call(applyStyle, style)
       .node();

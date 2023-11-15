@@ -417,6 +417,7 @@ export const Surface: SC<SurfaceOptions> = (options, context) => {
         z: 0,
         fill: "#1890FF",
         opacity: 1,
+        visibility: "visible",
         geometry: surfaceGeometry,
         material: surfaceMaterial,
       },
