@@ -70,6 +70,8 @@ Point3D.props = {
     { name: "dy", scale: "identity" },
     { name: "dz", scale: "identity" },
   ],
+  // @ts-ignore
   preInference: [...basePreInference(), { type: MaybeZeroX }, { type: MaybeZeroY }, { type: MaybeZeroZ }],
+  // @ts-ignore
   postInference: [...basePostInference(), { type: MaybeSize }, ...tooltip3d()],
 };

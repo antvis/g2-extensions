@@ -60,7 +60,9 @@ Line3D.props = {
     { name: "size" },
     { name: "series", scale: "identity" },
   ],
+  // @ts-ignore
   preInference: [...basePreInference(), { type: MaybeSeries }],
+  // @ts-ignore
   postInference: [...basePostInference(), ...tooltip3d()],
   interaction: {
     shareTooltip: false,
