@@ -5,3 +5,4 @@ export { Line } from "./line";
 export { LinePerspective } from "./line-perspective";
 export { Bar } from "./bar";
 export { BarPerspective } from "./bar-perspective";
+export { Surface } from "./surface";

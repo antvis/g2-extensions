@@ -37,9 +37,9 @@
   }
 
   async function render() {
-    if (typeof preClear === "function") preClear();
+    // if (typeof preClear === "function") preClear();
     const fn = plots[select.value];
-    const [finished, destroy] = await fn({ container: "container" });
+    const { finished, destroy } = await fn({ container: "container" });
     preClear = destroy;
   }
 </script>

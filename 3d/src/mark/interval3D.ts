@@ -70,6 +70,8 @@ Interval3D.props = {
     { name: "series", scale: "band" },
     { name: "size" },
   ],
+  // @ts-ignore
   preInference: [...basePreInference(), { type: MaybeZeroX }, { type: MaybeZeroY1 }, { type: MaybeZeroZ }],
+  // @ts-ignore
   postInference: [...basePostInference(), { type: MaybeSize }, ...tooltip3d()],
 };
