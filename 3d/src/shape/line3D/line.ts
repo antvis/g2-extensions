@@ -6,11 +6,10 @@ export type LineOptions = Record<string, any>;
 
 export const Line: SC<LineOptions> = (options, context) => {
   return (P, value, defaults) => {
-    const { color: defaultColor, lineWidth: defaultSize, ...rest } = defaults;
+    const { color: defaultColor, lineWidth: defaultSize, ...rest } = defaults!;
     const { color = defaultColor, size = defaultSize } = value;
     const stroke = color;
     const finalStyle = {
-      isBillboard: true,
       ...rest,
       ...(stroke && { stroke }),
       ...(size && { lineWidth: size }),

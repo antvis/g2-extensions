@@ -7,8 +7,10 @@ import { readFileSync } from "fs";
 export default createConfig({
   pkg: JSON.parse(readFileSync(new URL("./package.json", import.meta.url), "utf8")),
   umdName: "G2.Extension3D",
-  external: ["@antv/g2"],
+  external: ["@antv/g", "@antv/g-plugin-3d", "@antv/g2"],
   globals: {
+    "@antv/g": "window.G",
+    "@antv/g-plugin-3d": "window.G.3D",
     "@antv/g2": "window.G2",
   },
 });

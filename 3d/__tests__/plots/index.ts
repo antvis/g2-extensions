@@ -1,6 +1,8 @@
 export { Scatter } from "./scatter";
 export { ScatterPerspective } from "./scatter-perspective";
 export { ScatterLegend } from "./scatter-legend";
+export { ScatterPoint } from "./scatter-point";
+export { ScatterTriangle } from "./scatter-triangle";
 export { Line } from "./line";
 export { LinePerspective } from "./line-perspective";
 export { Bar } from "./bar";

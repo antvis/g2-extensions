@@ -13,8 +13,6 @@ import { Coordinate3D } from "@antv/coord";
 import { ShapeComponent as SC, select } from "@antv/g2";
 import { applyStyle, nextPow2, toOpacityKey } from "../utils";
 import ndarray from "ndarray";
-import fill from "ndarray-fill";
-import pool from "typedarray-pool";
 import ops from "ndarray-ops";
 import pack from "ndarray-pack";
 import gradient from "ndarray-gradient";
@@ -76,8 +74,12 @@ const UNIFORMS = {
   vertexColor: 0,
 };
 
+function assign(dstField: ndarray.NdArray<Float32Array>, srcField: ndarray.NdArray<Float32Array>) {
+  dstField.data.set(srcField.data);
+}
+
 const N_COLORS = 16;
-const padField = function (dstField: ndarray.NdArray, srcField: ndarray.NdArray) {
+const padField = function (dstField: ndarray.NdArray<Float32Array>, srcField: ndarray.NdArray<Float32Array>) {
   const srcShape = srcField.shape.slice();
   const dstShape = dstField.shape.slice();
 
@@ -148,23 +150,20 @@ export const Surface: SC<SurfaceOptions> = (options, context) => {
     const rh = Math.round(Math.abs(height / (points[1][1] - points[0][1]))) + 1;
     const rw = Math.round(Math.abs(width / (points[rh][0] - points[rh - 1][0]))) + 1;
 
-    const field = ndarray(pool.mallocFloat(rw * rh), [rw, rh]);
-    fill(field, function (x: number, y: number) {
-      return points[x * rw + y][2];
-    });
+    const field = ndarray(new Float32Array(rw * rh), [rw, rh]);
+    field.data.set(points.map(([x, y, z]) => z));
 
     const _field = [
-      ndarray(pool.mallocFloat(1024), [0, 0]),
-      ndarray(pool.mallocFloat(1024), [0, 0]),
-      ndarray(pool.mallocFloat(1024), [0, 0]),
+      ndarray(new Float32Array(1024), [0, 0]),
+      ndarray(new Float32Array(1024), [0, 0]),
+      ndarray(new Float32Array(1024), [0, 0]),
     ];
 
     const fsize = (field.shape[0] + 2) * (field.shape[1] + 2);
 
     // Resize if necessary
     if (fsize > _field[2].data.length) {
-      pool.freeFloat(_field[2].data);
-      _field[2].data = pool.mallocFloat(nextPow2(fsize));
+      _field[2].data = new Float32Array(nextPow2(fsize));
     }
 
     // Pad field
@@ -177,8 +176,7 @@ export const Surface: SC<SurfaceOptions> = (options, context) => {
     // Resize coordinate fields if necessary
     for (let i = 0; i < 2; ++i) {
       if (_field[2].size > _field[i].data.length) {
-        pool.freeFloat(_field[i].data);
-        _field[i].data = pool.mallocFloat(_field[2].size);
+        _field[i].data = new Float32Array(_field[2].size);
       }
       _field[i] = ndarray(_field[i].data, [shape[0] + 2, shape[1] + 2]);
     }
@@ -202,11 +200,11 @@ export const Surface: SC<SurfaceOptions> = (options, context) => {
     const fields = _field;
 
     // Compute surface normals
-    const dfields = ndarray(pool.mallocFloat(fields[2].size * 3 * 2), [3, shape[0] + 2, shape[1] + 2, 2]);
+    const dfields = ndarray(new Float32Array(fields[2].size * 3 * 2), [3, shape[0] + 2, shape[1] + 2, 2]);
     for (let i = 0; i < 3; ++i) {
       gradient(dfields.pick(i), fields[i], "mirror");
     }
-    const normals = ndarray(pool.mallocFloat(fields[2].size * 3), [shape[0] + 2, shape[1] + 2, 3]);
+    const normals = ndarray(new Float32Array(fields[2].size * 3), [shape[0] + 2, shape[1] + 2, 3]);
     for (let i = 0; i < shape[0] + 2; ++i) {
       for (let j = 0; j < shape[1] + 2; ++j) {
         const dxdu = dfields.get(0, i, j, 0);
@@ -249,7 +247,7 @@ export const Surface: SC<SurfaceOptions> = (options, context) => {
     let lo_intensity = Infinity;
     let hi_intensity = -Infinity;
     const count = (shape[0] - 1) * (shape[1] - 1) * 6;
-    const tverts = pool.mallocFloat(nextPow2(10 * count));
+    const tverts = new Float32Array(nextPow2(10 * count));
     let tptr = 0;
     let vertexCount = 0;
     for (let i = 0; i < shape[0] - 1; ++i) {
@@ -417,6 +415,7 @@ export const Surface: SC<SurfaceOptions> = (options, context) => {
         z: 0,
         fill: "#1890FF",
         opacity: 1,
+        visibility: "visible",
         geometry: surfaceGeometry,
         material: surfaceMaterial,
       },

@@ -1,6 +1,6 @@
 {
   "name": "@antv/g2-extension-3d",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "unpkg": "dist/index.umd.min.js",
@@ -27,26 +27,23 @@
   },
   "dependencies": {
     "d3-array": "^3.2.2",
-    "@antv/g-webgl": "^1.9.8",
     "@antv/g-plugin-3d": "^1.9.5",
-    "@antv/g-plugin-control": "^1.9.5",
     "@antv/util": "^3.3.5",
     "ndarray": "^1.0.19",
-    "ndarray-fill": "latest",
-    "ndarray-ops": "latest",
-    "ndarray-pack": "latest",
-    "ndarray-gradient": "latest",
-    "typedarray-pool": "latest",
-    "colormap": "latest"
+    "ndarray-ops": "^1.2.2",
+    "ndarray-pack": "^1.2.1",
+    "ndarray-gradient": "^1.0.1",
+    "colormap": "^2.3.2"
   },
   "peerDependencies": {
     "@antv/g": "^5.18.19",
     "@antv/g2": "^5.1.8"
   },
   "devDependencies": {
+    "@antv/g-webgl": "^1.9.8",
+    "@antv/g-plugin-control": "^1.9.5",
     "@types/d3-array": "3.0.5",
     "@types/ndarray": "^1.0.14",
-    "@types/typedarray-pool": "^1.1.5",
     "@types/ndarray-ops": "^1.2.7",
     "@types/colormap": "^2.3.4",
     "@antv/g": "^5.18.19",

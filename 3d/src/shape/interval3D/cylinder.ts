@@ -8,22 +8,22 @@ export const Cylinder: SC<CylinderOptions> = (options, context) => {
   // Render border only when colorAttribute is stroke.
   const { ...style } = options;
 
-  if (!context.cylinderGeometry) {
-    const renderer = context.canvas.getConfig().renderer;
+  if (!context!.cylinderGeometry) {
+    const renderer = context!.canvas.getConfig().renderer;
     const plugin = renderer.getPlugin("device-renderer");
     const device = plugin.getDevice();
     // create a cylinder geometry
-    context.cylinderGeometry = new CylinderGeometry(device, {
+    context!.cylinderGeometry = new CylinderGeometry(device, {
       radius: 0.5,
       height: 1,
     });
     // create a material with Lambert lighting model
-    context.cylinderMaterial = new MeshLambertMaterial(device);
+    context!.cylinderMaterial = new MeshLambertMaterial(device);
   }
 
   return (_points, value, defaults) => {
     const points = _points as unknown as Vector3[];
-    const { color: defaultColor } = defaults;
+    const { color: defaultColor } = defaults!;
     const { color = defaultColor, transform, opacity } = value;
     const [cx, cy, cz] = getOrigin(points);
 
@@ -36,8 +36,8 @@ export const Cylinder: SC<CylinderOptions> = (options, context) => {
         x: cx,
         y: cy,
         z: cz,
-        geometry: context.cylinderGeometry,
-        material: context.cylinderMaterial,
+        geometry: context!.cylinderGeometry,
+        material: context!.cylinderMaterial,
       },
     });
     cylinder.setOrigin(0, 0, 0);
@@ -47,6 +47,7 @@ export const Cylinder: SC<CylinderOptions> = (options, context) => {
       .call(applyStyle, defaults)
       .style("fill", color)
       .style("transform", transform)
+      .style("visibility", "visible")
       .style(toOpacityKey(options), opacity)
       .call(applyStyle, style)
       .node();
