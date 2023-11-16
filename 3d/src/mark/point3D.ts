@@ -1,10 +1,27 @@
 import { Coordinate3D } from "@antv/coord";
 import { PointMark, MarkComponent as MC, Vector3, MaybeZeroX, MaybeZeroY, MaybeZeroZ, MaybeSize } from "@antv/g2";
+import { baseGeometryChannels, basePostInference, basePreInference, tooltip3d } from "./utils";
 import { Cube } from "../shape/point3D/cube";
 import { Sphere } from "../shape/point3D/sphere";
 import { Point } from "../shape/point3D/point";
-import { baseGeometryChannels, basePostInference, basePreInference, tooltip3d } from "./utils";
 import { Cross } from "../shape/point3D/cross";
+import { Triangle } from "../shape/point3D/triangle";
+import { TriangleDown } from "../shape/point3D/triangleDown";
+import { HollowPoint } from "../shape/point3D/hollow";
+import { HollowDiamond } from "../shape/point3D/hollowDiamond";
+import { HollowHexagon } from "../shape/point3D/hollowHexagon";
+import { HollowSquare } from "../shape/point3D/hollowSquare";
+import { HollowTriangleDown } from "../shape/point3D/hollowTriangleDown";
+import { HollowTriangle } from "../shape/point3D/hollowTriangle";
+import { HollowBowtie } from "../shape/point3D/hollowBowtie";
+import { Plus } from "../shape/point3D/plus";
+import { Diamond } from "../shape/point3D/diamond";
+import { Square } from "../shape/point3D/square";
+import { Hexagon } from "../shape/point3D/hexagon";
+import { Bowtie } from "../shape/point3D/bowtie";
+import { Hyphen } from "../shape/point3D/hyphen";
+import { Tick } from "../shape/point3D/tick";
+import { Line } from "../shape/point3D/line";
 
 export type PointOptions = Omit<PointMark, "type">;
 
@@ -54,8 +71,25 @@ export const Point3D: MC<PointOptions> = (options) => {
 const shape = {
   sphere: Sphere,
   cube: Cube,
+  hollow: HollowPoint,
+  hollowDiamond: HollowDiamond,
+  hollowHexagon: HollowHexagon,
+  hollowSquare: HollowSquare,
+  hollowTriangleDown: HollowTriangleDown,
+  hollowTriangle: HollowTriangle,
+  hollowBowtie: HollowBowtie,
   point: Point,
+  plus: Plus,
+  diamond: Diamond,
+  square: Square,
+  triangle: Triangle,
+  hexagon: Hexagon,
   cross: Cross,
+  bowtie: Bowtie,
+  hyphen: Hyphen,
+  line: Line,
+  tick: Tick,
+  triangleDown: TriangleDown,
 };
 
 Point3D.props = {
