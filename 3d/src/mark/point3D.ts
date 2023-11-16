@@ -2,7 +2,9 @@ import { Coordinate3D } from "@antv/coord";
 import { PointMark, MarkComponent as MC, Vector3, MaybeZeroX, MaybeZeroY, MaybeZeroZ, MaybeSize } from "@antv/g2";
 import { Cube } from "../shape/point3D/cube";
 import { Sphere } from "../shape/point3D/sphere";
+import { Point } from "../shape/point3D/point";
 import { baseGeometryChannels, basePostInference, basePreInference, tooltip3d } from "./utils";
+import { Cross } from "../shape/point3D/cross";
 
 export type PointOptions = Omit<PointMark, "type">;
 
@@ -52,6 +54,8 @@ export const Point3D: MC<PointOptions> = (options) => {
 const shape = {
   sphere: Sphere,
   cube: Cube,
+  point: Point,
+  cross: Cross,
 };
 
 Point3D.props = {

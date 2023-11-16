@@ -8,23 +8,23 @@ export const Cone: SC<ConeOptions> = (options, context) => {
   // Render border only when colorAttribute is stroke.
   const { ...style } = options;
 
-  if (!context.coneGeometry) {
-    const renderer = context.canvas.getConfig().renderer;
+  if (!context!.coneGeometry) {
+    const renderer = context!.canvas.getConfig().renderer;
     const plugin = renderer.getPlugin("device-renderer");
     const device = plugin.getDevice();
     // create a cone geometry
-    context.coneGeometry = new ConeGeometry(device, {
+    context!.coneGeometry = new ConeGeometry(device, {
       peakRadius: 0,
       baseRadius: 0.5,
       height: 1,
     });
     // create a material with Lambert lighting model
-    context.coneMaterial = new MeshLambertMaterial(device);
+    context!.coneMaterial = new MeshLambertMaterial(device);
   }
 
   return (_points, value, defaults) => {
     const points = _points as unknown as Vector3[];
-    const { color: defaultColor } = defaults;
+    const { color: defaultColor } = defaults!;
     const { color = defaultColor, transform, opacity } = value;
     const [cx, cy, cz] = getOrigin(points);
 
@@ -37,8 +37,8 @@ export const Cone: SC<ConeOptions> = (options, context) => {
         x: cx,
         y: cy,
         z: cz,
-        geometry: context.coneGeometry,
-        material: context.coneMaterial,
+        geometry: context!.coneGeometry,
+        material: context!.coneMaterial,
       },
     });
     cone.setOrigin(0, 0, 0);
