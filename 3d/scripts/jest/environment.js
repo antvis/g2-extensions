@@ -3,6 +3,10 @@ const path = require("path");
 const NodeEnvironment = require("jest-environment-node");
 const { TMP_DIR } = require("./constants");
 
+// @see https://stackoverflow.com/questions/75047051/jest-class-extends-value-object-is-not-a-constructor-or-null
+global.TextEncoder = require("util").TextEncoder;
+global.TextDecoder = require("util").TextDecoder;
+
 /**
  * @see https://jestjs.io/docs/puppeteer
  */
