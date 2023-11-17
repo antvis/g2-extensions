@@ -6,26 +6,26 @@ register("mark.lowVariance", LowVariance);
 
 export function LowVarianceBasic() {
   return {
-    type: 'view',
+    type: "view",
     children: [
-        // 原始图表
-        {
-          data: { type: "fetch", value: "data/basic-time-series.csv" },
-          encode: {
-              "x": "year",
-              "y": "life_expect"
-          },
-          type: "interval",
+      // 原始图表
+      {
+        data: { type: "fetch", value: "data/basic-time-series.csv" },
+        encode: {
+          x: "year",
+          y: "life_expect",
         },
-        // 低方差 mark
-        {
-          type: "lowVariance",
-          data: { type: "fetch", value: "data/basic-time-series.csv" },
-          encode: {
-            "x": "year",
-            "y": "life_expect"
-          },
+        type: "interval",
+      },
+      // 低方差 mark
+      {
+        type: "lowVariance",
+        data: { type: "fetch", value: "data/basic-time-series.csv" },
+        encode: {
+          x: "year",
+          y: "life_expect",
         },
-      ]
+      },
+    ],
   };
 }

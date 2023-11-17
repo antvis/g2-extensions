@@ -6,26 +6,26 @@ register("mark.categoryOutlier", CategoryOutlier);
 
 export function CategoryOutlierBasic() {
   return {
-    type: 'view',
+    type: "view",
     children: [
-        // 原始图表
-        {
-          data: { type: "fetch", value: "data/category-outlier.csv" },
-          encode: {
-              "x": "year",
-              "y": "value"
-          },
-          type: "interval",
+      // 原始图表
+      {
+        data: { type: "fetch", value: "data/category-outlier.csv" },
+        encode: {
+          x: "year",
+          y: "value",
         },
-        // 异常点 mark
-        {
-          type: "categoryOutlier",
-          data: { type: "fetch", value: "data/category-outlier.csv" },
-          encode: {
-            "x": "year",
-            "y": "value"
-          },
+        type: "interval",
+      },
+      // 异常点 mark
+      {
+        type: "categoryOutlier",
+        data: { type: "fetch", value: "data/category-outlier.csv" },
+        encode: {
+          x: "year",
+          y: "value",
         },
-      ]
+      },
+    ],
   };
 }
