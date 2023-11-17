@@ -1,5 +1,5 @@
 import { Auto } from "./auto";
-import { CategoryOutlier, ChangePoint, Correlation, Insight, LowVariance, TimeSeriesOutlier, Trend } from "./insights";
+import { CategoryOutlier, ChangePoint, Insight, LowVariance, TimeSeriesOutlier, Trend } from "./insights";
 
 export function autolib() {
   return {
@@ -11,9 +11,9 @@ export function autolib() {
     // "mark.correlation": Correlation,
     "mark.changePoint": ChangePoint,
     "mark.lowVariance": LowVariance,
-    "mark.categoryOutlier": CategoryOutlier
+    "mark.categoryOutlier": CategoryOutlier,
   };
 }
 
-export * from './auto';
-export * from './insights'
+export * from "./auto";
+export * from "./insights";
