@@ -6,26 +6,26 @@ register("mark.trend", Trend);
 
 export function TrendBasic() {
   return {
-    type: 'view',
+    type: "view",
     children: [
-        // 原始图表
-        {
-          data: { type: "fetch", value: "data/change-point.csv" },
-          encode: {
-              "x": "year",
-              "y": "value"
-          },
-          type: "line",
+      // 原始图表
+      {
+        data: { type: "fetch", value: "data/change-point.csv" },
+        encode: {
+          x: "year",
+          y: "value",
         },
-        // 趋势线 mark
-        {
-          type: "trend",
-          data: { type: "fetch", value: "data/change-point.csv" },
-          encode: {
-            "x": "year",
-            "y": "value"
-          },
+        type: "line",
+      },
+      // 趋势线 mark
+      {
+        type: "trend",
+        data: { type: "fetch", value: "data/change-point.csv" },
+        encode: {
+          x: "year",
+          y: "value",
         },
-      ]
+      },
+    ],
   };
 }

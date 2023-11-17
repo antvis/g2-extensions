@@ -6,14 +6,14 @@ register("mark.insight", Insight);
 
 export function InsightBasic() {
   return {
-    type: 'view',
+    type: "view",
     children: [
       // 原始图表
       {
         data: { type: "fetch", value: "data/basic-time-series.csv" },
         encode: {
-            "x": "year",
-            "y": "life_expect"
+          x: "year",
+          y: "life_expect",
         },
         type: "line",
       },
@@ -22,12 +22,10 @@ export function InsightBasic() {
         type: "insight",
         data: { type: "fetch", value: "data/basic-time-series.csv" },
         // 指定分析的维度、指标和分析类型
-        measures: [
-          { fieldName: 'life_expect', method: 'SUM' },
-        ],
-        dimensions: [{fieldName: 'year'}],
-        insightType: 'trend',
+        measures: [{ fieldName: "life_expect", method: "SUM" }],
+        dimensions: [{ fieldName: "year" }],
+        insightType: "trend",
       },
-    ]
+    ],
   };
 }
