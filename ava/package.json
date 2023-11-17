@@ -21,7 +21,7 @@
     "build": "run-p build:*"
   },
   "dependencies": {
-    "@antv/ava": "^3.2.0",
+    "@antv/ava": "^3.3.0",
     "@antv/util": "^3.3.5"
   },
   "peerDependencies": {
