@@ -1,0 +1,37 @@
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    defaults:
+      run:
+        working-directory: ./3d
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: "16"
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run CI
+        run: |
+          npm install
+          npm run ci
+
+      - name: Upload snapshots to GitHub Actions Artifacts
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: snapshots
+          path: |
+            __tests__/integration/snapshots/**/*-actual.*
+            __tests__/integration/snapshots/**/*-diff.*
+          retention-days: 1

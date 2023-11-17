@@ -1,17 +1,9 @@
 import { CameraType } from "@antv/g";
-import { Renderer as WebGLRenderer } from "@antv/g-webgl";
-import { Plugin as ThreeDPlugin } from "@antv/g-plugin-3d";
-import { Plugin as ControlPlugin } from "@antv/g-plugin-control";
 import { Runtime, extend, corelib } from "@antv/g2";
 import { threedlib } from "../../src";
 
 export function LinePerspective(context) {
-  const { container } = context;
-
-  // Create a WebGL renderer.
-  const renderer = new WebGLRenderer();
-  renderer.registerPlugin(new ThreeDPlugin());
-  renderer.registerPlugin(new ControlPlugin());
+  const { container, renderer } = context;
 
   const Chart = extend(Runtime, { ...corelib(), ...threedlib() });
   const chart = new Chart({

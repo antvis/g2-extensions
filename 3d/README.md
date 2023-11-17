@@ -85,3 +85,11 @@ chart
     palette: "spectral",
   });
 ```
+
+## Run Test Cases
+
+To run playwright, you must download new browsers first:
+
+```bash
+$npx playwright install
+```
