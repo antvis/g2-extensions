@@ -32,6 +32,6 @@ jobs:
         with:
           name: snapshots
           path: |
-            __tests__/e2e/snapshots/*-actual.*
-            __tests__/e2e/snapshots/*-diff.*
+            3d/__tests__/e2e/snapshots/*-actual.*
+            3d/__tests__/e2e/snapshots/*-diff.*
           retention-days: 1
