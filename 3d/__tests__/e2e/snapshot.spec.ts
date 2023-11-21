@@ -26,7 +26,7 @@ describe("Charts", () => {
       // Chart already rendered, capture into buffer.
       const buffer = await page.locator("canvas").screenshot();
 
-      const dir = `${__dirname}/snapshots/static`;
+      const dir = `${__dirname}/snapshots`;
       try {
         const maxError = 0;
         await expect(buffer).toMatchCanvasSnapshot(dir, key, { maxError });
