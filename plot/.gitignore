@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+
+esm
+lib
+dist
+
+playwright-report
+*-actual.png
+*-diff.png
