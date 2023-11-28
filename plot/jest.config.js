@@ -23,7 +23,4 @@ module.exports = {
   testRegex: "(/__tests__/.*\\.(test|spec))\\.(ts|tsx|js)$",
   // Transform esm to cjs.
   transformIgnorePatterns: [`<rootDir>/node_modules/(?!(${esm}))`],
-  globalSetup: "./scripts/jest/setup.js",
-  globalTeardown: "./scripts/jest/teardown.js",
-  testEnvironment: "./scripts/jest/environment.js",
 };
