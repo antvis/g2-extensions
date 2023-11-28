@@ -1,5 +1,5 @@
 import { Runtime, extend, corelib } from "@antv/g2";
-import { corelib as plotlib } from "../../src";
+import { plotlib } from "../../src";
 
 export function SunburstColor(context) {
   const { container } = context;

@@ -4,7 +4,3 @@ node_modules
 esm
 lib
 dist
-
-playwright-report
-*-actual.png
-*-diff.png

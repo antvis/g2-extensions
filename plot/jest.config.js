@@ -17,7 +17,7 @@ module.exports = {
       },
     ],
   },
-  collectCoverageFrom: ["src/**/*.ts", "!**/d3-sankey/**", "!**/d3-cloud/**"],
+  collectCoverageFrom: ["src/**/*.ts"],
   moduleFileExtensions: ["ts", "tsx", "js", "json"],
   collectCoverage: false,
   testRegex: "(/__tests__/.*\\.(test|spec))\\.(ts|tsx|js)$",

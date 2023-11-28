@@ -14,7 +14,7 @@ Use mark individually:
 
 ```js
 import { Runtime, extend, corelib } from "@antv/g2";
-import { corelib as plotlib } from "../../src";
+import { plotlib } from "@antv/g2-extension-plot";
 
 const Chart = extend(Runtime, { ...corelib(), ...plotlib() });
 

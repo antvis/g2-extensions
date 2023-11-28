@@ -1,5 +1,5 @@
 import { Runtime, extend, corelib } from "@antv/g2";
-import { corelib as plotlib } from "../../src";
+import { plotlib } from "../../src";
 
 export function Sunburst(context) {
   const { container } = context;
