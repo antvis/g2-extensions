@@ -35,12 +35,7 @@
     "@antv/g-plugin-rough-svg-renderer": "^1.9.22",
     "@antv/g-plugin-rough-canvas-renderer": "^1.9.22",
     "d3-array": "^3.2.4",
-    "colormap": "^2.3.2",
-    "ndarray": "^1.0.19",
-    "ndarray-ops": "^1.2.2",
-    "ndarray-pack": "^1.2.1",
-    "d3-hierarchy": "^3.1.2",
-    "ndarray-gradient": "^1.0.1"
+    "d3-hierarchy": "^3.1.2"
   },
   "devDependencies": {
     "@antv/g-pattern": "^1.2.19",
