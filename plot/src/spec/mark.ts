@@ -1,6 +1,6 @@
 import type { BaseMark as G2BaseMark, MarkTypes, ChannelTypes } from '@antv/g2';
-import type { Literal2Object } from '@antv/g2/esm/spec/utils';
 import type { Interaction } from './interaction';
+import type { Literal2Object } from './utils';
 
 export type AtheisticChanelTypes = 'size' | 'color' | 'shape' | 'opacity';
 
