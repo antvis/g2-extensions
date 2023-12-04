@@ -1,7 +1,7 @@
 import { deepMix, pick, get } from '@antv/util';
 import { partition, CHILD_NODE_COUNT } from '../utils/hierarchy/partition';
 
-import type { CompositeMarkComponent as CC } from '@antv/g2/src/runtime';
+import type { CompositeMarkComponent as CC } from '@antv/g2/lib/runtime';
 import type { SunburstMark } from '../spec/mark';
 
 export type SunburstData = {
