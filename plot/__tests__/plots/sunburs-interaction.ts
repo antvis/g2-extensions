@@ -21,8 +21,8 @@ export function SunburstInteraction(context) {
           fill: 'red',
         },
       },
-      // FixedColor default: true, true -> drillDown update scale, false -> scale keep.
-      fixedColor: false,
+      // isFixedColor default: false, false -> drillDown update scale, true -> scale keep.
+      isFixedColor: true,
     },
   };
 

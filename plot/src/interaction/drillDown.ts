@@ -30,7 +30,7 @@ export type DrillDownOptions = {
     active: TextStyleProps;
   };
   // Update data change, Whether it is fixed scale.color.
-  fixedColor?: boolean;
+  isFixedColor?: boolean;
 };
 
 // Default breadCrumb config.
@@ -50,7 +50,7 @@ const DEFAULT_BREADCRUMB = {
  * @todo DrillDown interaction
  */
 export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
-  const { breadCrumb: textConfig = {}, fixedColor = true } = drillDownOptions;
+  const { breadCrumb: textConfig = {}, isFixedColor = false } = drillDownOptions;
   const breadCrumb = deepMix({}, DEFAULT_BREADCRUMB, textConfig);
 
   return (context) => {
@@ -191,8 +191,8 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
           const newData = data.filter((item) => {
             const key = item.path;
 
-            // FixedColor true change drillDown color.
-            if (fixedColor) {
+            // isFixedColor true change drillDown color.
+            if (!isFixedColor) {
               item[SUNBURST_ANCESTOR_FIELD] = key.split(' / ')[depth];
             }
 
@@ -205,13 +205,13 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
           return deepMix(
             {},
             mark,
-            fixedColor
+            isFixedColor
               ? {
                 data: newData,
+                scale: newScale,
               }
               : {
                 data: newData,
-                scale: newScale,
               },
           );
         });
