@@ -1,5 +1,5 @@
 import { Text, Group, TextStyleProps } from '@antv/g';
-import { get, deepMix, pick, keys } from '@antv/util';
+import { get, deepMix, pick, keys, omit } from '@antv/util';
 import { select, PLOT_CLASS_NAME } from '@antv/g2';
 import { CHILD_NODE_COUNT } from '../utils/hierarchy/partition';
 import {
@@ -31,6 +31,7 @@ export type DrillDownOptions = {
   };
   // Update data change, Whether it is fixed scale.color.
   isFixedColor?: boolean;
+  duration?: number;
 };
 
 // Default breadCrumb config.
@@ -50,7 +51,7 @@ const DEFAULT_BREADCRUMB = {
  * @todo DrillDown interaction
  */
 export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
-  const { breadCrumb: textConfig = {}, isFixedColor = false } = drillDownOptions;
+  const { breadCrumb: textConfig = {}, isFixedColor = false, duration } = drillDownOptions;
   const breadCrumb = deepMix({}, DEFAULT_BREADCRUMB, textConfig);
 
   return (context) => {
@@ -252,12 +253,37 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
           element.style.cursor = 'pointer';
           const originalAttrs = pick(element.attributes, changeStyleKey);
 
+          const inactiveStyle = deepMix(originalAttrs, state.inactive);
+
           element.addEventListener('mouseenter', () => {
-            element.attr(state.active);
+            if (duration) {
+
+              element.attr('zIndex', get(state, ['active', 'zIndex'], 2));
+              element.animate([
+                omit(inactiveStyle, ['zIndex']),
+                omit(state.active, ['zIndex']),
+              ], {
+                duration,
+                fill: 'forwards'
+              });
+            } else {
+              element.attr(state.active);
+            }
           });
 
           element.addEventListener('mouseleave', () => {
-            element.attr(deepMix(originalAttrs, state.inactive));
+            if (duration) {
+              element.attr('zIndex', get(inactiveStyle, ['zIndex'], 1));
+              element.animate([
+                omit(state.active, ['zIndex']),
+                omit(inactiveStyle, ['zIndex']),
+              ], {
+                duration,
+                fill: 'forwards'
+              });
+            } else {
+              element.attr(inactiveStyle);
+            }
           });
         }
       });
