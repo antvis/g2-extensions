@@ -23,6 +23,7 @@ export function SunburstInteraction(context) {
       },
       // FixedColor default: true, true -> drillDown update scale, false -> scale keep.
       fixedColor: false,
+      duration: 300,
     },
   };
 

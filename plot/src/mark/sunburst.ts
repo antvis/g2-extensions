@@ -98,7 +98,9 @@ const DEFAULT_OPTIONS = {
     inactive: { zIndex: 1, stroke: '#fff' },
   },
   legend: false,
-  interaction: { drillDown: true },
+  interaction: {
+    drillDown: true,
+  },
   coordinate: {
     type: 'polar',
     innerRadius: 0.2,
