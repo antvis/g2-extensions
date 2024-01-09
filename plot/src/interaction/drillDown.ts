@@ -273,7 +273,6 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
 
           element.addEventListener('mouseleave', () => {
             if (duration) {
-              element.attr('zIndex', get(inactiveStyle, ['zIndex'], 1));
               element.animate([
                 omit(state.active, ['zIndex']),
                 omit(inactiveStyle, ['zIndex']),
@@ -281,6 +280,9 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
                 duration,
                 fill: 'forwards'
               });
+              setTimeout(() => {
+                element.attr('zIndex', get(inactiveStyle, ['zIndex'], 1));
+              }, duration);
             } else {
               element.attr(inactiveStyle);
             }
