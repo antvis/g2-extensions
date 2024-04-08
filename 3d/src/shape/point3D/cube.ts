@@ -36,16 +36,13 @@ export const Cube: SC<CubeOptions> = (options, context) => {
 
     const cube = new Mesh({
       style: {
-        x: cx,
-        y: cy,
-        z: cz,
         geometry: context!.cubeGeometry,
         material: context!.cubeMaterial,
       },
     });
-    cube.setOrigin(0, 0, 0);
     const scaling = finalRadius / GEOMETRY_SIZE;
     cube.scale(scaling);
+    cube.setPosition(cx, cy, cz);
 
     return select(cube)
       .call(applyStyle, defaults)

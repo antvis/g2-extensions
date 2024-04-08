@@ -34,15 +34,12 @@ export const Cone: SC<ConeOptions> = (options, context) => {
 
     const cone = new Mesh({
       style: {
-        x: cx,
-        y: cy,
-        z: cz,
         geometry: context!.coneGeometry,
         material: context!.coneMaterial,
       },
     });
-    cone.setOrigin(0, 0, 0);
     cone.scale([width, height, depth]);
+    cone.setPosition(cx, cy, cz);
 
     const selection = select(cone)
       .call(applyStyle, defaults)

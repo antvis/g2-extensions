@@ -16,7 +16,6 @@ export const Cube: SC<CubeOptions> = (options, context) => {
     const plugin = renderer.getPlugin("device-renderer");
     const device = plugin.getDevice();
     // create a cube geometry
-    // @ts-ignore
     context.cubeGeometry = new CubeGeometry(device, {
       width: 1,
       height: 1,
@@ -38,17 +37,12 @@ export const Cube: SC<CubeOptions> = (options, context) => {
 
     const cube = new Mesh({
       style: {
-        x: cx,
-        y: cy,
-        z: cz,
-        // @ts-ignore
         geometry: context.cubeGeometry,
-        // @ts-ignore
         material: context.cubeMaterial,
       },
     });
-    cube.setOrigin(0, 0, 0);
     cube.scale([width, height, depth]);
+    cube.setPosition(cx, cy, cz);
 
     const selection = select(cube)
       .call(applyStyle, defaults)
