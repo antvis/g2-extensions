@@ -1,6 +1,6 @@
 {
   "name": "@antv/g2-extension-plot",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "The mark plot in antv/g2",
   "main": "lib/index.js",
   "module": "esm/index.js",
@@ -25,13 +25,13 @@
   },
   "dependencies": {
     "@antv/g2": "^5.1.8",
-    "@antv/g": "^5.18.19",
+    "@antv/g": "^6.0.0",
     "@antv/util": "^3.3.5",
     "d3-array": "^3.2.4",
     "d3-hierarchy": "^3.1.2"
   },
   "devDependencies": {
-    "@antv/g-pattern": "^1.2.19",
+    "@antv/g-pattern": "^2.0.0",
     "@types/node": "^16.11.7",
     "@types/jest": "^29.0.0",
     "@types/d3-array": "3.0.5",

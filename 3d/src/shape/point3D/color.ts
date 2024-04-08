@@ -41,7 +41,7 @@ export const Color: SC<ColorOptions> = (options, context) => {
     const p = select(document.createElement("path", {}))
       .call(applyStyle, defaults)
       .style("fill", "transparent")
-      .style("d", path(cx, cy, finalRadius))
+      .style("d", path(0, 0, finalRadius))
       .style("isBillboard", true)
       .style("lineWidth", finalLineWidth)
       .style("transform", transform)
@@ -51,7 +51,7 @@ export const Color: SC<ColorOptions> = (options, context) => {
       .call(applyStyle, style)
       .node();
 
-    p.translateLocal(0, 0, cz);
+    p.translateLocal(cx, cy, cz);
 
     return p;
   };

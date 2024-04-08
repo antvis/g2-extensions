@@ -33,15 +33,12 @@ export const Cylinder: SC<CylinderOptions> = (options, context) => {
 
     const cylinder = new Mesh({
       style: {
-        x: cx,
-        y: cy,
-        z: cz,
         geometry: context!.cylinderGeometry,
         material: context!.cylinderMaterial,
       },
     });
-    cylinder.setOrigin(0, 0, 0);
     cylinder.scale([width, height, depth]);
+    cylinder.setPosition(cx, cy, cz);
 
     const selection = select(cylinder)
       .call(applyStyle, defaults)
