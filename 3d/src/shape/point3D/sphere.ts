@@ -36,16 +36,13 @@ export const Sphere: SC<SphereOptions> = (options, context) => {
 
     const sphere = new Mesh({
       style: {
-        x: cx,
-        y: cy,
-        z: cz,
         geometry: context!.sphereGeometry,
         material: context!.sphereMaterial,
       },
     });
-    sphere.setOrigin(0, 0, 0);
     const scaling = finalRadius / GEOMETRY_SIZE;
     sphere.scale(scaling);
+    sphere.setPosition(cx, cy, cz);
 
     return select(sphere)
       .call(applyStyle, defaults)
