@@ -1,22 +1,14 @@
-import { Text, Group, TextStyleProps } from '@antv/g';
-import { get, deepMix, pick, keys } from '@antv/util';
-import { select, PLOT_CLASS_NAME } from '@antv/g2';
-import { CHILD_NODE_COUNT } from '../utils/hierarchy/partition';
-import {
-  SUNBURST_TYPE,
-  SUNBURST_TYPE_FIELD,
-  SUNBURST_ANCESTOR_FIELD,
-} from '../mark/sunburst';
-
-import type { DisplayObject } from '@antv/g';
+import type { TextStyleProps, DisplayObject } from "@antv/g";
+import { get, deepMix, pick, keys } from "@antv/util";
+import { select, PLOT_CLASS_NAME } from "@antv/g2";
+import { CHILD_NODE_COUNT } from "../utils/hierarchy/partition";
+import { SUNBURST_TYPE, SUNBURST_TYPE_FIELD, SUNBURST_ANCESTOR_FIELD } from "../mark/sunburst";
 
 // Get sunburst element.
 const getElementsSunburst = (plot) => {
   return plot
-    .querySelectorAll('.element')
-    .filter(
-      (item) => get(item, ['style', SUNBURST_TYPE_FIELD]) === SUNBURST_TYPE,
-    );
+    .querySelectorAll(".element")
+    .filter((item) => get(item, ["style", SUNBURST_TYPE_FIELD]) === SUNBURST_TYPE);
 };
 
 function selectPlotArea(root: DisplayObject): DisplayObject {
@@ -35,14 +27,14 @@ export type DrillDownOptions = {
 
 // Default breadCrumb config.
 const DEFAULT_BREADCRUMB = {
-  rootText: 'root',
+  rootText: "root",
   style: {
-    fill: 'rgba(0, 0, 0, 0.85)',
+    fill: "rgba(0, 0, 0, 0.85)",
     fontSize: 12,
     y: 1,
   },
   active: {
-    fill: 'rgba(0, 0, 0, 0.5)',
+    fill: "rgba(0, 0, 0, 0.5)",
   },
 };
 
@@ -55,13 +47,16 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
 
   return (context) => {
     const { update, setState, container, view, options } = context;
+
+    const document = container.ownerDocument;
+
     const plotArea = selectPlotArea(container);
 
     const sunburstMark = options.marks.find(({ id }) => id === SUNBURST_TYPE);
     const { state } = sunburstMark;
 
     // Create breadCrumbTextsGroup,save textSeparator、drillTexts.
-    const textGroup = new Group();
+    const textGroup = document.createElement("g");
     plotArea.appendChild(textGroup);
 
     // Modify the data and scale according to the path and the level of the current click, so as to achieve the effect of drilling down and drilling up and initialization.
@@ -72,7 +67,7 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
       // More path creation text.
       if (path) {
         // Create root text.
-        const rootText = new Text({
+        const rootText = document.createElement("text", {
           style: {
             x: 0,
             text: breadCrumb.rootText,
@@ -84,8 +79,8 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
 
         textGroup.appendChild(rootText);
 
-        let name = '';
-        const pathArray = path?.split(' / ');
+        let name = "";
+        const pathArray = path?.split(" / ");
         let y = breadCrumb.style.y;
         let x = textGroup.getBBox().width;
 
@@ -93,11 +88,10 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
 
         // Create path: 'type1 / type2 / type3' -> '/ type1 / type2 / type3'.
         const drillTexts = pathArray.map((text, index) => {
-
-          const textSeparator = new Text({
+          const textSeparator = document.createElement("text", {
             style: {
               x,
-              text: ' / ',
+              text: " / ",
               ...breadCrumb.style,
               y,
             },
@@ -109,8 +103,8 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
 
           name = `${name}${text} / `;
 
-          const drillText = new Text({
-            name: name.replace(/\s\/\s$/, ''),
+          const drillText = document.createElement("text", {
+            name: name.replace(/\s\/\s$/, ""),
             style: {
               text,
               x,
@@ -133,7 +127,7 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
            * | ----maxWidth---- |
            * | / tyep1 / tyep2  |
            * | / type3 |
-          */
+           */
           if (x > maxWidth) {
             y = textGroup.getBBox().height;
             x = 0;
@@ -154,38 +148,35 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
 
         // Add Active, Add DrillDown
         [rootText, ...drillTexts].forEach((item, index) => {
-          // Last drillText 
+          // Last drillText
           if (index === drillTexts.length) return;
           const originalAttrs = { ...item.attributes };
-          item.attr('cursor', 'pointer');
-          item.addEventListener('mouseenter', () => {
+          item.attr("cursor", "pointer");
+          item.addEventListener("mouseenter", () => {
             item.attr(breadCrumb.active);
           });
-          item.addEventListener('mouseleave', () => {
+          item.addEventListener("mouseleave", () => {
             item.attr(originalAttrs);
           });
-          item.addEventListener('click', () => {
-            drillDownClick(item.name, get(item, ['style', 'depth']));
+          item.addEventListener("click", () => {
+            drillDownClick(item.name, get(item, ["style", "depth"]));
           });
         });
       }
 
       // Update marks.
-      setState('drillDown', (viewOptions) => {
+      setState("drillDown", (viewOptions) => {
         const { marks } = viewOptions;
         // Add filter transform for every marks,
         // which will skip for mark without color channel.
         const newMarks = marks.map((mark) => {
-          if (mark.id !== SUNBURST_TYPE && mark.type !== 'rect') return mark;
+          if (mark.id !== SUNBURST_TYPE && mark.type !== "rect") return mark;
 
           // Inset after aggregate transform, such as group, and bin.
           const { data } = mark;
 
           const newScale = Object.fromEntries(
-            ['color'].map((channel) => [
-              channel,
-              { domain: view.scale[channel].getOptions().domain },
-            ]),
+            ["color"].map((channel) => [channel, { domain: view.scale[channel].getOptions().domain }]),
           );
 
           const newData = data.filter((item) => {
@@ -193,7 +184,7 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
 
             // isFixedColor true change drillDown color.
             if (!isFixedColor) {
-              item[SUNBURST_ANCESTOR_FIELD] = key.split(' / ')[depth];
+              item[SUNBURST_ANCESTOR_FIELD] = key.split(" / ")[depth];
             }
 
             if (!path) return true;
@@ -207,12 +198,12 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
             mark,
             isFixedColor
               ? {
-                data: newData,
-                scale: newScale,
-              }
+                  data: newData,
+                  scale: newScale,
+                }
               : {
-                data: newData,
-              },
+                  data: newData,
+                },
           );
         });
         return { ...viewOptions, marks: newMarks };
@@ -226,19 +217,20 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
 
       // Element need style.markType === 'sunburst', markType === 'rect', have children.
       if (
-        get(item, ['style', SUNBURST_TYPE_FIELD]) !== SUNBURST_TYPE ||
-        get(item, ['markType']) !== 'rect' ||
-        !get(item, ['style', CHILD_NODE_COUNT])
-      ) return;
+        get(item, ["style", SUNBURST_TYPE_FIELD]) !== SUNBURST_TYPE ||
+        get(item, ["markType"]) !== "rect" ||
+        !get(item, ["style", CHILD_NODE_COUNT])
+      )
+        return;
 
-      const path = get(item, ['__data__', 'key']);
-      const depth = get(item, ['style', 'depth']);
-      item.style.cursor = 'pointer';
+      const path = get(item, ["__data__", "key"]);
+      const depth = get(item, ["style", "depth"]);
+      item.style.cursor = "pointer";
       drillDownClick(path, depth);
     };
 
     // Add click drill interaction.
-    plotArea.addEventListener('click', createDrillClick);
+    plotArea.addEventListener("click", createDrillClick);
 
     // Change attributes keys.
     const changeStyleKey = keys({ ...state.active, ...state.inactive });
@@ -246,17 +238,17 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
     const createActive = () => {
       const elements = getElementsSunburst(plotArea);
       elements.forEach((element) => {
-        const childNodeCount = get(element, ['style', CHILD_NODE_COUNT]);
-        const cursor = get(element, ['style', 'cursor']);
-        if (cursor !== 'pointer' && childNodeCount) {
-          element.style.cursor = 'pointer';
+        const childNodeCount = get(element, ["style", CHILD_NODE_COUNT]);
+        const cursor = get(element, ["style", "cursor"]);
+        if (cursor !== "pointer" && childNodeCount) {
+          element.style.cursor = "pointer";
           const originalAttrs = pick(element.attributes, changeStyleKey);
 
-          element.addEventListener('mouseenter', () => {
+          element.addEventListener("mouseenter", () => {
             element.attr(state.active);
           });
 
-          element.addEventListener('mouseleave', () => {
+          element.addEventListener("mouseleave", () => {
             element.attr(deepMix(originalAttrs, state.inactive));
           });
         }
@@ -264,12 +256,12 @@ export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
     };
 
     // Animate elements update, Add active.
-    plotArea.addEventListener('mousemove', createActive);
+    plotArea.addEventListener("mousemove", createActive);
 
     return () => {
       textGroup.remove();
-      plotArea.removeEventListener('click', createDrillClick);
-      plotArea.removeEventListener('mousemove', createActive);
+      plotArea.removeEventListener("click", createDrillClick);
+      plotArea.removeEventListener("mousemove", createActive);
     };
   };
 }
