@@ -71,8 +71,7 @@ export function transformData(options: Pick<SunburstOptions, "data" | "encode">)
 
     // 当出现 0 数值时，x 会出现相等的情况，导致渲染成的图形异常。
     if (x[0] === x[1]) {
-      y[0] = (d.y[2] + d.y[0]) / 2;
-      y[1] = (d.y[2] + d.y[0]) / 2;
+      y[0] = y[1] = (d.y[2] + d.y[0]) / 2;
     }
 
     return {
