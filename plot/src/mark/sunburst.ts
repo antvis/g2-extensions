@@ -125,7 +125,7 @@ export const Sunburst: CC<SunburstOptions> = (options) => {
   const encode = { ...DEFAULT_OPTIONS.encode, ...encodeOption };
   const { value } = encode;
   const rectData = transformData({ encode, data });
-  console.log(rectData, "rectData");
+
   return [
     deepMix({}, DEFAULT_OPTIONS, {
       type: "rect",
