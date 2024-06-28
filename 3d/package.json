@@ -1,6 +1,6 @@
 {
   "name": "@antv/g2-extension-3d",
-  "version": "0.2.1",
+  "version": "0.2.0",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "unpkg": "dist/index.umd.min.js",
