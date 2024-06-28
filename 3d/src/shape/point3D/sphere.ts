@@ -43,7 +43,7 @@ export const Sphere: SC<SphereOptions> = (options, context) => {
     const scaling = finalRadius / GEOMETRY_SIZE;
     sphere.scale(scaling);
     sphere.setPosition(cx, cy, cz);
-
+      // @ts-ignore
     return select(sphere)
       .call(applyStyle, defaults)
       .style("fill", color)

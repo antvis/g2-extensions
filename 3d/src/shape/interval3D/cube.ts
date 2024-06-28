@@ -43,7 +43,7 @@ export const Cube: SC<CubeOptions> = (options, context) => {
     });
     cube.scale([width, height, depth]);
     cube.setPosition(cx, cy, cz);
-
+  // @ts-ignore
     const selection = select(cube)
       .call(applyStyle, defaults)
       .style("fill", color)
