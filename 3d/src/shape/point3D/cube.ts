@@ -43,7 +43,7 @@ export const Cube: SC<CubeOptions> = (options, context) => {
     const scaling = finalRadius / GEOMETRY_SIZE;
     cube.scale(scaling);
     cube.setPosition(cx, cy, cz);
-
+  // @ts-ignore
     return select(cube)
       .call(applyStyle, defaults)
       .style("fill", color)

@@ -40,7 +40,7 @@ export const Cone: SC<ConeOptions> = (options, context) => {
     });
     cone.scale([width, height, depth]);
     cone.setPosition(cx, cy, cz);
-
+    // @ts-ignore
     const selection = select(cone)
       .call(applyStyle, defaults)
       .style("fill", color)

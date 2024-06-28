@@ -14,7 +14,7 @@ export const Line: SC<LineOptions> = (options, context) => {
       ...(stroke && { stroke }),
       ...(size && { lineWidth: size }),
     };
-
+    // @ts-ignore
     return select(new Polyline()).style("points", P).call(applyStyle, finalStyle).node();
   };
 };

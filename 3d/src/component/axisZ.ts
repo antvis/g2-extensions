@@ -1,7 +1,7 @@
-import { DisplayObject } from "@antv/g";
+import { DisplayObject } from "@antv/g-lite";
 import { GuideComponentComponent as GCC, LinearAxis, AxisOptions } from "@antv/g2";
 
-export function rotateAxis(axis: DisplayObject, options: AxisOptions) {
+export function rotateAxis(axis: DisplayObject<any, any>, options: AxisOptions) {
   const { eulerAngles, origin } = options;
   if (origin) {
     axis.setOrigin(origin);

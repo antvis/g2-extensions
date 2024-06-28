@@ -39,7 +39,7 @@ export const Cylinder: SC<CylinderOptions> = (options, context) => {
     });
     cylinder.scale([width, height, depth]);
     cylinder.setPosition(cx, cy, cz);
-
+  // @ts-ignore
     const selection = select(cylinder)
       .call(applyStyle, defaults)
       .style("fill", color)

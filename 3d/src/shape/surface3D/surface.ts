@@ -422,7 +422,7 @@ export const Surface: SC<SurfaceOptions> = (options, context) => {
     });
     surface.setOrigin(0, 0, 0);
     surface.scale(width / (rw - 1), height / (rh - 1), 1);
-
+    // @ts-ignore
     return select(surface)
       .call(applyStyle, defaults)
       .style(toOpacityKey(options), opacity)
