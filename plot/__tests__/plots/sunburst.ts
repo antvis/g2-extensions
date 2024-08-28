@@ -15,7 +15,7 @@ export function Sunburst(context) {
       type: 'fetch',
       value: 'https://gw.alipayobjects.com/os/antfincdn/ryp44nvUYZ/coffee.json',
     })
-    .animate('enter', { type: 'waveIn' })
+    .animate(false)
     .coordinate({ type: 'polar', innerRadius: 0 });
 
   chart.render();

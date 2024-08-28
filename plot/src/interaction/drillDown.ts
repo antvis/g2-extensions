@@ -23,6 +23,7 @@ export type DrillDownOptions = {
   };
   // Update data change, Whether it is fixed scale.color.
   isFixedColor?: boolean;
+  duration?: number;
 };
 
 // Default breadCrumb config.
@@ -42,7 +43,7 @@ const DEFAULT_BREADCRUMB = {
  * @todo DrillDown interaction
  */
 export function DrillDown(drillDownOptions: DrillDownOptions = {}) {
-  const { breadCrumb: textConfig = {}, isFixedColor = false } = drillDownOptions;
+  const { breadCrumb: textConfig = {}, isFixedColor = false, duration } = drillDownOptions;
   const breadCrumb = deepMix({}, DEFAULT_BREADCRUMB, textConfig);
 
   return (context) => {
