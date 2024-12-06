@@ -5,9 +5,11 @@ import { createCanvas } from './canvas';
 import type { Chart, MetaData, Options } from './types';
 
 function getInfoOf(options: Options) {
-  const { outputType } = options;
+  const { outputType, imageType } = options;
   if (outputType === 'pdf') return ['.pdf', 'application/pdf'] as const;
   if (outputType === 'svg') return ['.svg', undefined] as const;
+
+  if (imageType === 'jpeg') return ['.jpeg', 'image/jpeg'] as const;
   return ['.png', 'image/png'] as const;
 }
 

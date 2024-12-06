@@ -33,11 +33,12 @@ expect.extend({
 });
 
 describe('createChart', () => {
-  const fn = async (outputType?) => {
+  const fn = async (outputType?, imageType: any = 'png') => {
     return await createChart({
       width: 300,
       height: 150,
       outputType,
+      imageType,
       type: 'interval',
       autoFit: true,
       data: [
@@ -76,6 +77,16 @@ describe('createChart', () => {
     const chart = await fn();
 
     expect(chart).toMatchFile('./assets/chart.png');
+
+    chart.exportToFile(join(__dirname, './assets/chart'));
+
+    chart.destroy();
+  });
+
+  it('image jpeg', async () => {
+    const chart = await fn('image', 'jpeg');
+
+    expect(chart).toMatchFile('./assets/chart.jpeg');
 
     chart.exportToFile(join(__dirname, './assets/chart'));
 

@@ -1,5 +1,5 @@
 import type { G2Spec } from '@antv/g2';
-import { PdfConfig, PngConfig } from 'canvas';
+import { PdfConfig, PngConfig, JpegConfig } from 'canvas';
 
 export type Options = G2Spec & {
   width: number;
@@ -11,9 +11,15 @@ export type Options = G2Spec & {
    * @defaultValue 'image'
    */
   outputType?: 'image' | 'pdf' | 'svg';
+  /**
+   * <zh/> 图片类型，默认为 png
+   *
+   * <en/> Image type, default is png
+   */
+  imageType?: 'png' | 'jpeg';
 };
 
-export type MetaData = PdfConfig | PngConfig;
+export type MetaData = PdfConfig | PngConfig | JpegConfig;
 
 export interface Chart {
   exportToFile: (file: string, meta?: MetaData) => void;
