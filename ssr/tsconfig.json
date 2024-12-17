@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "declaration": true,
+    "outDir": "lib",
+  },
+  "exclude": ["__tests__"]
 }
