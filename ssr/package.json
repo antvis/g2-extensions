@@ -1,9 +1,10 @@
 {
   "name": "@antv/g2-ssr",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Support SSR for G2",
-  "main": "index.js",
+  "main": "./dist/g2-ssr.cjs",
   "types": "./dist/lib/index.d.ts",
+  "bin": "./bin/g2-ssr.js",
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "ci": "run-s type-check build test",
