@@ -20,11 +20,15 @@ import { createChart } from '@antv/g2-ssr';
 const chart = await createChart({
   width: 640,
   height: 480,
+  imageType: 'png', // or 'jpeg'
   // chart spec
 });
 
 chart.exportToFile('chart');
 // -> chart.png
+
+chart.toBuffer();
+// -> get buffer
 ```
 
 ### Render in CLI
