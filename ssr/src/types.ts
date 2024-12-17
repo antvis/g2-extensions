@@ -4,6 +4,7 @@ import { PdfConfig, PngConfig, JpegConfig } from 'canvas';
 export type Options = G2Spec & {
   width: number;
   height: number;
+  devicePixelRatio?: number;
   /**
    * <zh/> 输出文件类型，默认导出为图片
    *

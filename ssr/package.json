@@ -1,6 +1,6 @@
 {
   "name": "@antv/g2-ssr",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Support SSR for G2",
   "main": "index.js",
   "types": "./dist/lib/index.d.ts",
