@@ -1,0 +1,8 @@
+{
+  "name": "@antv/g2-extension",
+  "description": "The extension ofr antv/g2",
+  "scripts": {
+    "test": "cd 3d && npm run test && cd ../ava && npm run test && cd ../ssr && npm run test"
+  },
+  "repository": "git@github.com:antvis/g2-extentions.git"
+}
