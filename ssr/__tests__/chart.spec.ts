@@ -1,7 +1,7 @@
-import { existsSync, readFileSync } from 'fs';
-import { createChart } from '../src';
-import type { Chart, MetaData } from '../src';
+import { existsSync, readFileSync, writeFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
+import { createChart } from '../src';
+import type { MetaData, Chart } from '../src';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -13,11 +13,19 @@ declare global {
 }
 
 expect.extend({
-  toMatchFile: (received: Chart, path: string, meta: MetaData) => {
+  toMatchFile: (received: Chart, path: string, meta?: MetaData) => {
     const _path = join(__dirname, path);
-    const pass = existsSync(_path)
-      ? received.toBuffer(meta).equals(readFileSync(_path))
-      : true;
+
+    const file = received.toBuffer(meta);
+    const pass = existsSync(_path) ? file.equals(readFileSync(_path)) : true;
+
+    const actualName = _path.replace('.', '-actual.');
+    if (!pass) {
+      writeFileSync(actualName, file);
+    } else if (existsSync(actualName)) {
+      unlinkSync(actualName);
+    }
+
     if (pass) {
       return {
         message: () => 'passed',
