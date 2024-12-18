@@ -120,4 +120,27 @@ describe('createChart', () => {
 
     chart.destroy();
   });
+
+  it('image', async () => {
+    const chart = await createChart({
+      type: 'image',
+      autoFit: true,
+      data: [{ x: 0, y: 0 }],
+      encode: {
+        x: 'x',
+        y: 'y',
+        src: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
+        size: 48,
+      },
+      axis: false,
+      tooltip: false,
+      waitForRender: 300,
+    });
+
+    expect(chart).toMatchFile('./assets/image.png');
+
+    chart.exportToFile(join(__dirname, './assets/image'));
+
+    chart.destroy();
+  });
 });
