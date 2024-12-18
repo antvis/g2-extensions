@@ -1,7 +1,7 @@
 import { Renderer } from '@antv/g-canvas';
 import { Canvas as GCanvas } from '@antv/g';
 import type { Canvas as NodeCanvas } from 'canvas';
-import { createCanvas as createNodeCanvas } from 'canvas';
+import { createCanvas as createNodeCanvas, Image as NodeImage } from 'canvas';
 import type { Options } from './types';
 
 /**
@@ -36,6 +36,8 @@ export function createCanvas(options: Options): [GCanvas, NodeCanvas] {
     canvas: nodeCanvas,
     // @ts-expect-error missing types
     offscreenCanvas: offscreenNodeCanvas,
+    // @ts-expect-error missing types
+    createImage: () => new NodeImage(),
   });
 
   return [gCanvas, nodeCanvas];
