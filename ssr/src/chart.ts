@@ -27,8 +27,16 @@ function updateLight() {
   return lib;
 }
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export async function createChart(options: Options): Promise<Chart> {
-  const { width = 640, height = 480, outputType, ...restOptions } = options;
+  const {
+    width = 640,
+    height = 480,
+    outputType,
+    waitForRender = 16,
+    ...restOptions
+  } = options;
   const [gCanvas, nodeCanvas] = createCanvas(options);
 
   const context: G2Context = {
@@ -45,6 +53,8 @@ export async function createChart(options: Options): Promise<Chart> {
   await new Promise<void>((resolve) =>
     render({ width, height, animate: false, ...restOptions }, context, resolve)
   );
+
+  await sleep(waitForRender);
 
   const [extendName, mimeType] = getInfoOf(options);
 
