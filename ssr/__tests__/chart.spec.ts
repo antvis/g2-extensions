@@ -2,6 +2,7 @@ import { existsSync, readFileSync, writeFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
 import { createChart } from '../src';
 import type { MetaData, Chart } from '../src';
+import { AntVLogo } from './logo';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -137,7 +138,7 @@ describe('createChart', () => {
       encode: {
         x: 'x',
         y: 'y',
-        src: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
+        src: AntVLogo,
         size: 48,
       },
       axis: false,
