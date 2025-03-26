@@ -10,7 +10,7 @@
     "ci": "run-s type-check build test",
     "prepublishOnly": "npm run ci",
     "test": "run-s test:*",
-    "test:unit": "jest",
+    "test:unit": "jest ",
     "test:bin": "node ./bin/g2-ssr.js export -i ./__tests__/chart-spec.json -o ./__tests__/assets/chart-spec",
     "type-check": "tsc --noEmit"
   },
@@ -45,5 +45,6 @@
     "@antv/g2": "^5.2.7",
     "cac": "^6.7.14",
     "canvas": "^2.11.2"
-  }
+  },
+  "repository": "git@github.com:antvis/g2-extentions.git"
 }

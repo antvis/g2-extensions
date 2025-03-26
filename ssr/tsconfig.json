@@ -4,6 +4,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "outDir": "lib",
+    "lib": ["esnext", "dom"],
   },
   "exclude": ["__tests__"]
 }

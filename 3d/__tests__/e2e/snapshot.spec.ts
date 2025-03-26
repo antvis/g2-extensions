@@ -21,7 +21,7 @@ describe("Charts", () => {
       const url = `http://localhost:${globalThis.PORT}/?name=${key}`;
       await page.goto(url);
 
-      await sleep(300);
+      await sleep(1000);
 
       // Chart already rendered, capture into buffer.
       const buffer = await page.locator("canvas").screenshot();
