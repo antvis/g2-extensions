@@ -114,7 +114,7 @@ const DEFAULT_OPTIONS = {
 };
 
 export const Sunburst: CC<SunburstOptions> = (options) => {
-  const { encode: encodeOption, data = [], legend, ...resOptions } = options;
+  const { encode: encodeOption, data = [], ...resOptions } = options;
 
   const coordinate = {
     ...resOptions.coordinate,
