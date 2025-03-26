@@ -26,15 +26,13 @@
   "dependencies": {
     "@antv/g2": "^5.1.8",
     "@antv/util": "^3.3.5",
-    "d3-array": "^3.2.4",
-    "d3-hierarchy": "^3.1.2"
+    "@antv/vendor": "^1.0.10"
   },
   "devDependencies": {
     "@antv/g": "^6.0.0",
     "@antv/g-pattern": "^2.0.0",
     "@types/node": "^16.11.7",
     "@types/jest": "^29.0.0",
-    "@types/d3-array": "3.0.5",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-terser": "^0.4.3",

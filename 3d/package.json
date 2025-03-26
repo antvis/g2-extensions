@@ -25,12 +25,12 @@
     "ci": "npm run test && npm run build"
   },
   "dependencies": {
-    "d3-array": "^3.2.2",
     "@antv/coord": "^0.4.7",
     "@antv/g": "^6.0.0",
     "@antv/g2": "^5.1.8",
     "@antv/g-plugin-3d": "^2.0.0",
     "@antv/util": "^3.3.5",
+    "@antv/vendor": "^1.0.10",
     "ndarray": "^1.0.19",
     "ndarray-ops": "^1.2.2",
     "ndarray-pack": "^1.2.1",
@@ -40,7 +40,6 @@
   "devDependencies": {
     "@antv/g-webgl": "^2.0.0",
     "@antv/g-plugin-control": "^2.0.0",
-    "@types/d3-array": "3.0.5",
     "@types/node": "^16.11.7",
     "@types/ndarray": "^1.0.14",
     "@types/ndarray-ops": "^1.2.7",
