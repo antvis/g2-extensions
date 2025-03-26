@@ -1,4 +1,4 @@
-import { group } from "d3-array";
+import { group } from "@antv/vendor/d3-array";
 import { LineMark, MaybeSeries, MarkComponent as MC, SingleMark, Vector3 } from "@antv/g2";
 import { Line as Line3DShape } from "../shape/line3D/line";
 import { baseGeometryChannels, basePostInference, basePreInference, tooltip3d } from "./utils";

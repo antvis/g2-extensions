@@ -1,4 +1,4 @@
-import * as d3Hierarchy from 'd3-hierarchy';
+import * as d3Hierarchy from "@antv/vendor/d3-hierarchy";
 import { assign, isArray, reduce, size, filter, isString } from '@antv/util';
 
 const DEFAULT_OPTIONS: Options = {
@@ -147,7 +147,7 @@ export function partition(data: any, options: Options): any[] {
   const x = as[0];
   const y = as[1];
 
-  root.each((node) => {
+  root.each((node: any) => {
     node[x] = [node.x0, node.x1, node.x1, node.x0];
     node[y] = [node.y1, node.y1, node.y0, node.y0];
     node.name = node.name || node.data?.name || node.data?.label;

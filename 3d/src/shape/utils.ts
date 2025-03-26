@@ -1,4 +1,4 @@
-import { Primitive } from "d3-array";
+import { Primitive } from "@antv/vendor/d3-array";
 import { Selection, Vector2, Vector3 } from "@antv/g2";
 
 export function applyStyle(selection: Selection, style: Record<string, Primitive>) {

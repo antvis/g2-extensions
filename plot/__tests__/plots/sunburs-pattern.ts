@@ -32,7 +32,8 @@ export function SunburstPattern(context) {
           transform: 'rotate(30deg)',
         };
       },
-    });
+    })
+    .legend(false);
   
   chart.render();
 
