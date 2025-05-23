@@ -1,6 +1,6 @@
 {
   "name": "@antv/g2-ssr",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Support SSR for G2",
   "main": "./dist/g2-ssr.cjs",
   "types": "./dist/lib/index.d.ts",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@antv/g": "^6.1.14",
-    "@antv/g2": "^5.2.7",
+    "@antv/g2": "^5.3.3",
     "cac": "^6.7.14",
     "canvas": "^2.11.2"
   }
