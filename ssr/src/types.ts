@@ -1,3 +1,4 @@
+import { RendererPlugin } from '@antv/g';
 import type { G2Spec } from '@antv/g2';
 import { PdfConfig, PngConfig, JpegConfig } from 'canvas';
 
@@ -25,6 +26,12 @@ export type Options = G2Spec & {
    * <en/> Image type, default is png
    */
   imageType?: 'png' | 'jpeg';
+  /**
+   * <zh/> 插件
+   *
+   * <en/> Plugins
+   */
+  plugins?: RendererPlugin[];
 };
 
 export type MetaData = PdfConfig | PngConfig | JpegConfig;
