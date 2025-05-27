@@ -3,6 +3,7 @@ import { createCanvas as createNodeCanvas } from 'canvas';
 import { existsSync, lstatSync, writeFileSync } from 'fs';
 import { createCanvas } from './canvas';
 import type { Chart, MetaData, Options } from './types';
+import { RendererPlugin } from "@antv/g";
 
 function getInfoOf(options: Options) {
   const { outputType, imageType } = options;
@@ -29,7 +30,10 @@ function updateLight() {
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export async function createChart(options: Options): Promise<Chart> {
+export async function createChart(
+  options: Options,
+  plugins: RendererPlugin[] = []
+): Promise<Chart> {
   const {
     width = 640,
     height = 480,
@@ -37,7 +41,7 @@ export async function createChart(options: Options): Promise<Chart> {
     waitForRender = 16,
     ...restOptions
   } = options;
-  const [gCanvas, nodeCanvas] = createCanvas(options);
+  const [gCanvas, nodeCanvas] = createCanvas(options, plugins);
 
   const context: G2Context = {
     canvas: gCanvas,

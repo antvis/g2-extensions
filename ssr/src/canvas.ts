@@ -1,5 +1,5 @@
 import { Renderer } from '@antv/g-canvas';
-import { Canvas as GCanvas } from '@antv/g';
+import { Canvas as GCanvas, RendererPlugin } from '@antv/g';
 import type { Canvas as NodeCanvas } from 'canvas';
 import { createCanvas as createNodeCanvas, Image as NodeImage } from 'canvas';
 import type { Options } from './types';
@@ -11,7 +11,10 @@ import type { Options } from './types';
  * @param options <zh/> options 画布配置 | <en/> options canvas configuration
  * @returns <zh/> [G 画布, NodeCanvas 画布] | <en/> [GCanvas, NodeCanvas]
  */
-export function createCanvas(options: Options): [GCanvas, NodeCanvas] {
+export function createCanvas(
+  options: Options,
+  plugins: RendererPlugin[] = []
+): [GCanvas, NodeCanvas] {
   const {
     width = 640,
     height = 480,
@@ -26,6 +29,10 @@ export function createCanvas(options: Options): [GCanvas, NodeCanvas] {
   const domInteractionPlugin = renderer.getPlugin('dom-interaction');
   renderer.unregisterPlugin(htmlRendererPlugin);
   renderer.unregisterPlugin(domInteractionPlugin);
+
+  plugins.forEach((plugin) => {
+    renderer.registerPlugin(plugin);
+  });
 
   const gCanvas = new GCanvas({
     width,
