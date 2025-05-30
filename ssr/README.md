@@ -57,8 +57,8 @@ When render in CLI, you can pass `-t` or `--type` option to export SVG or PDF.
 When using G2-SSR, you can also use G render plugins. Here's how to use plugins in server-side rendering:
 
 ```js
-import { createChart } from "@antv/g2-ssr";
-import { Plugin as RoughCanvasPlugin } from "@antv/g-plugin-rough-canvas-renderer";
+import { createChart } from '@antv/g2-ssr';
+import { Plugin as RoughCanvasPlugin } from '@antv/g-plugin-rough-canvas-renderer';
 
 const chart = await createChart({
   width: 500,
