@@ -20,7 +20,7 @@ export function createCanvas(options: Options): [GCanvas, NodeCanvas] {
   } = options;
   const nodeCanvas = createNodeCanvas(width, height, outputType as any);
   const offscreenNodeCanvas = createNodeCanvas(1, 1);
-  const plugins = options.plugins || [];
+  const renderPlugins = options.renderPlugins || [];
 
   const renderer = new Renderer();
   const htmlRendererPlugin = renderer.getPlugin('html-renderer');
@@ -28,7 +28,7 @@ export function createCanvas(options: Options): [GCanvas, NodeCanvas] {
   renderer.unregisterPlugin(htmlRendererPlugin);
   renderer.unregisterPlugin(domInteractionPlugin);
 
-  plugins.forEach((plugin) => {
+  renderPlugins.forEach((plugin) => {
     renderer.registerPlugin(plugin);
   });
 

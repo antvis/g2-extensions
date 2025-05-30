@@ -31,7 +31,7 @@ export type Options = G2Spec & {
    *
    * <en/> Plugins
    */
-  plugins?: RendererPlugin[];
+  renderPlugins?: RendererPlugin[];
 };
 
 export type MetaData = PdfConfig | PngConfig | JpegConfig;
