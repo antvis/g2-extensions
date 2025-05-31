@@ -1,6 +1,6 @@
 {
   "name": "@antv/g2-ssr",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Support SSR for G2",
   "main": "./dist/g2-ssr.cjs",
   "types": "./dist/lib/index.d.ts",
@@ -26,6 +26,7 @@
     "bin"
   ],
   "devDependencies": {
+    "@antv/g-plugin-rough-canvas-renderer": "^2.0.44",
     "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-terser": "^0.4.4",
@@ -42,6 +43,7 @@
   },
   "dependencies": {
     "@antv/g": "^6.1.14",
+    "@antv/g-canvas": "^2.0.43",
     "@antv/g2": "^5.3.3",
     "cac": "^6.7.14",
     "canvas": "^2.11.2"

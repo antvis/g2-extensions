@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from 'fs';
 import { createChart } from '../src';
 import type { Chart, MetaData } from '../src';
 import { join } from 'path';
+import { Plugin as RoughCanvasPlugin } from '@antv/g-plugin-rough-canvas-renderer';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -33,7 +34,7 @@ expect.extend({
 });
 
 describe('createChart', () => {
-  const fn = async (outputType?, imageType: any = 'png') => {
+  const fn = async (outputType?, imageType: any = 'png', options= {}) => {
     return await createChart({
       width: 300,
       height: 150,
@@ -70,6 +71,7 @@ describe('createChart', () => {
         { letter: 'Z', frequency: 0.00074 },
       ],
       encode: { x: 'letter', y: 'frequency' },
+      ...options,
     });
   };
 
@@ -79,6 +81,28 @@ describe('createChart', () => {
     expect(chart).toMatchFile('./assets/chart.png');
 
     chart.exportToFile(join(__dirname, './assets/chart'));
+
+    chart.destroy();
+  });
+
+  it('image png with plugins', async () => {
+    const chart = await fn('image', 'png', {
+      renderPlugins: [
+        new RoughCanvasPlugin({
+          roughRendering: (value) => {
+            return value.attributes.class !== 'area';
+          },
+        }),
+      ],
+      style: {
+        fillStyle: 'zigzag',
+        lineWidth: 2,
+      },
+    });
+
+    expect(chart).toMatchFile('./assets/chart-rough.png');
+
+    chart.exportToFile(join(__dirname, './assets/chart-rough.png'));
 
     chart.destroy();
   });

@@ -20,12 +20,17 @@ export function createCanvas(options: Options): [GCanvas, NodeCanvas] {
   } = options;
   const nodeCanvas = createNodeCanvas(width, height, outputType as any);
   const offscreenNodeCanvas = createNodeCanvas(1, 1);
+  const renderPlugins = options.renderPlugins || [];
 
   const renderer = new Renderer();
   const htmlRendererPlugin = renderer.getPlugin('html-renderer');
   const domInteractionPlugin = renderer.getPlugin('dom-interaction');
   renderer.unregisterPlugin(htmlRendererPlugin);
   renderer.unregisterPlugin(domInteractionPlugin);
+
+  renderPlugins.forEach((plugin) => {
+    renderer.registerPlugin(plugin);
+  });
 
   const gCanvas = new GCanvas({
     width,
