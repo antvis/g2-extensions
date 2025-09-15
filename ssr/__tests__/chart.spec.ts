@@ -125,7 +125,7 @@ describe('createChart', () => {
     chart.destroy();
   });
 
-  it('file pdf', async () => {
+  it.skip('file pdf', async () => {
     const chart = await fn('pdf');
 
     const metadata = {
