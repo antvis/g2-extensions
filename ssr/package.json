@@ -1,6 +1,6 @@
 {
   "name": "@antv/g2-ssr",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Support SSR for G2",
   "main": "./dist/g2-ssr.cjs",
   "types": "./dist/lib/index.d.ts",
@@ -46,6 +46,7 @@
     "@antv/g-canvas": "^2.0.43",
     "@antv/g2": "^5.3.4",
     "cac": "^6.7.14",
-    "canvas": "^2.11.2"
-  }
+    "canvas": "^3"
+  },
+  "repository": "git@github.com:antvis/g2-extensions.git"
 }
