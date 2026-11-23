@@ -11,7 +11,7 @@
     "esm",
     "dist"
   ],
-  "sizeEffects": false,
+  "sideEffects": false,
   "scripts": {
     "start": "npm run dev",
     "dev": "vite",
